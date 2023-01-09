@@ -32,7 +32,7 @@ class TodoListItem extends React.Component {
             <span className="description">{label}</span>
             <span className="created">{time}</span>
           </label>
-          <button className="icon icon-edit" onClick={onEditing} onFocus={() => inputFocus(id)}></button>
+          <button className="icon icon-edit" onClick={onEditing} onFocus={inputFocus(id)}></button>
           <button className="icon icon-destroy" onClick={onDeleted}></button>
         </div>
         <InputEdit label={label} onEditing={onEditing} id={id} editInput={editInput} />
