@@ -5,8 +5,8 @@ class InputEdit extends React.Component {
     label: this.props.label,
   };
 
-  onSubmit = (e) => {
-    e.preventDefault();
+  onSubmit = (event) => {
+    event.preventDefault();
     if (this.state.label === '' || this.state.label.split(' ').length - 1 === this.state.label.length) {
       return;
     }
@@ -17,9 +17,9 @@ class InputEdit extends React.Component {
     this.props.onEditing();
   };
 
-  onLabelChange = (e) => {
+  onLabelChange = (event) => {
     this.setState({
-      label: e.target.value,
+      label: event.target.value,
     });
   };
 
