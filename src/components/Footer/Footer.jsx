@@ -2,7 +2,7 @@ import React from 'react';
 import Proptypes from 'prop-types';
 
 import './Footer.css';
-import { Filter } from './Filters';
+import { Filter } from '../Filters';
 
 class Footer extends React.Component {
   render() {
@@ -12,7 +12,7 @@ class Footer extends React.Component {
       <footer className="footer">
         <span className="todo-count">{itemsLeft} items left</span>
         <Filter onFilterChange={onFilterChange} filter={filter} />
-        <button className="clear-completed" onClick={() => clearCompleted()}>
+        <button type="button" className="clear-completed" onClick={clearCompleted}>
           Clear completed
         </button>
       </footer>
