@@ -5,6 +5,8 @@ import './HeaderInput.css';
 class HeaderInput extends React.Component {
   state = {
     label: '',
+    min: '',
+    sec: '',
   };
 
   onLabelChange = (event) => {
@@ -13,12 +15,26 @@ class HeaderInput extends React.Component {
     });
   };
 
+  onMinChange = (event) => {
+    this.setState({
+      min: Number(event.target.value),
+    });
+  };
+
+  onSecChange = (event) => {
+    this.setState({
+      sec: Number(event.target.value),
+    });
+  };
+
   onSubmit = (event) => {
     event.preventDefault();
     if (this.state.label !== '' && this.state.label.split(' ').length - 1 !== this.state.label.length) {
-      this.props.onItemAdded(this.state.label);
+      this.props.onItemAdded(this.state.label, this.state.min, this.state.sec);
       this.setState({
         label: '',
+        min: '',
+        sec: '',
       });
     }
   };
@@ -28,7 +44,7 @@ class HeaderInput extends React.Component {
       <header className="header">
         <h1>todos</h1>
 
-        <form onSubmit={this.onSubmit}>
+        <form className="new-todo-form" onSubmit={this.onSubmit}>
           <input
             label="NewTask"
             className="new-todo"
@@ -37,7 +53,25 @@ class HeaderInput extends React.Component {
             autoFocus={true}
             onChange={this.onLabelChange}
             value={this.state.label}
+            required
           />
+          <input
+            type="text"
+            className="new-todo-form__timer"
+            placeholder="Min"
+            onChange={this.onMinChange}
+            value={this.state.min}
+            required
+          />
+          <input
+            type="text"
+            className="new-todo-form__timer"
+            placeholder="Sec"
+            onChange={this.onSecChange}
+            value={this.state.sec}
+            required
+          />
+          <input type="submit" className="submit-input" />
         </form>
       </header>
     );
