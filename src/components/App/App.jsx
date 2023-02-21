@@ -30,6 +30,10 @@ export default class App extends React.Component {
       this.onPause(item.id);
       return;
     }
+    if (item.completed) {
+      this.onPause(item.id);
+      return;
+    }
     if (item.timeleft >= 1) {
       item.timeleft -= 1;
     }
@@ -138,7 +142,6 @@ export default class App extends React.Component {
     setTimeout(() => {
       const input = document.getElementById(id);
       input.focus();
-      //input.select();
     }, 0);
   };
 

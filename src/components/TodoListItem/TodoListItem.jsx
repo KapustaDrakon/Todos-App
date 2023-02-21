@@ -41,6 +41,7 @@ const TodoListItem = ({
           type="checkbox"
           id={'button-complete' + id}
           onClick={onCompleted}
+          onChange={() => pause(item.id)}
         />
         <label htmlFor={'button-complete' + id}>
           <span className="title">{item.label}</span>
