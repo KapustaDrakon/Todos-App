@@ -1,43 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class InputEdit extends React.Component {
-  state = {
-    label: this.props.label,
-  };
+const InputEdit = ({ label, editInput, id }) => {
+  const [labelState, setLabelState] = useState(label);
 
-  onSubmit = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
-    if (this.state.label === '' || this.state.label.split(' ').length - 1 === this.state.label.length) {
+    if (labelState === '' || labelState.split(' ').length - 1 === labelState.length) {
       return;
     }
-    this.props.editInput(this.props.id, this.state.label);
-    this.setState({
-      label: this.state.label,
-    });
-    this.props.onEditing();
+    editInput(id, labelState);
+    setLabelState(labelState);
   };
 
-  onLabelChange = (event) => {
-    this.setState({
-      label: event.target.value,
-    });
+  const onLabelChange = (event) => {
+    setLabelState(event.target.value);
   };
 
-  render() {
-    const { id } = this.props;
-    return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          id={id}
-          label="Editing"
-          type="text"
-          className="edit"
-          defaultValue={this.state.label}
-          onChange={this.onLabelChange}
-        />
-      </form>
-    );
-  }
-}
+  return (
+    <form onSubmit={onSubmit}>
+      <input id={id} label="Editing" type="text" className="edit" defaultValue={labelState} onChange={onLabelChange} />
+    </form>
+  );
+};
 
 export default InputEdit;
